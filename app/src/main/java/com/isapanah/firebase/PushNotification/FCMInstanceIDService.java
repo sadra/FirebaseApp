@@ -25,25 +25,16 @@ public class FCMInstanceIDService extends FirebaseInstanceIdService {
         // Saving reg id to shared preferences
         storeRegIdInPref(refreshedToken);
 
-        // sending reg id to your server
-        sendRegistrationToServer(refreshedToken);
-
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(FCM_Registered);
         registrationComplete.putExtra("token", refreshedToken);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
 
-    private void sendRegistrationToServer(final String token) {
-        // sending gcm token to server
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(FCM, 0);
-        pref.edit().putString(FCM_Token, token) .apply();
-        Log.d(FCMInstanceIDService.class.getSimpleName(), "User Token: " + token+" | "+pref.getString(FCM_Token, null));
-    }
-
     private void storeRegIdInPref(String token) {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(FCM, 0);
         pref.edit().putString(FCM_Token, token) .apply();
+        Log.d(FCMInstanceIDService.class.getSimpleName(), "Firebase Token: " + token+" | "+pref.getString(FCM_Token, null));
     }
 
 }
