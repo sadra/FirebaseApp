@@ -1,7 +1,7 @@
 package com.isapanah.firebase;
 
 /**
- * Created by sadra on 10/21/17.
+ * Created by Sadra Isapanah Amlashi on 10/21/17.
  */
 
 public class Attribuites {

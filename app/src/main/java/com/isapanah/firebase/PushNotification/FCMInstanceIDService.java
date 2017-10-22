@@ -12,7 +12,7 @@ import static com.isapanah.firebase.Attribuites.FCM_Registered;
 import static com.isapanah.firebase.Attribuites.FCM_Token;
 
 /**
- * Created by sadra on 10/21/17.
+ * Created by Sadra Isapanah Amlashi on 10/21/17.
  */
 
 public class FCMInstanceIDService extends FirebaseInstanceIdService {

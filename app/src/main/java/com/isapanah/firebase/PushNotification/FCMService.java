@@ -31,7 +31,7 @@ import static com.isapanah.firebase.Attribuites.FCM_ACTION_CLICK_NOTIFICATION;
 import static com.isapanah.firebase.Attribuites.FCM_ACTION_NEW_NOTIFICATION;
 
 /**
- * Created by sadra on 10/21/17.
+ * Created by Sadra Isapanah Amlashi on 10/21/17.
  */
 
 public class FCMService extends FirebaseMessagingService {
