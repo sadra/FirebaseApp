@@ -19,14 +19,22 @@ android {
     }
 }
 
+ext {
+    SUPPORT_LIB_VER = '25.+'
+    GOOGLE_LIB_VER = '10.+'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIB_VER"
+    compile "com.android.support:design:$SUPPORT_LIB_VER"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile "com.google.firebase:firebase-core:$GOOGLE_LIB_VER"
+    compile "com.google.firebase:firebase-messaging:$GOOGLE_LIB_VER"
 }
 
 apply plugin: 'com.google.gms.google-services'
