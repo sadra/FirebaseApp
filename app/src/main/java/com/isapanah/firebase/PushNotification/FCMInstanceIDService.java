@@ -27,7 +27,7 @@ public class FCMInstanceIDService extends FirebaseInstanceIdService {
 
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(FCM_Registered);
-        registrationComplete.putExtra("token", refreshedToken);
+        registrationComplete.putExtra("fcm_token", refreshedToken);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
 
