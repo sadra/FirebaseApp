@@ -144,6 +144,7 @@ public class FCMService extends FirebaseMessagingService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(getNotify(), notificationBuilder.build());
+
     }
 
     private void broadcastTheNotification(String title, String message){
