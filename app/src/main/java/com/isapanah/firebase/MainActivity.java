@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
@@ -15,14 +14,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import static com.isapanah.firebase.Attribuites.FCM;
 import static com.isapanah.firebase.Attribuites.FCM_ACTION_NEW_NOTIFICATION;
-import static com.isapanah.firebase.Attribuites.FCM_Registered;
 import static com.isapanah.firebase.Attribuites.FCM_TOPIC_ONSCREEN;
 import static com.isapanah.firebase.Attribuites.FCM_TOPIC_VIP_USER;
-import static com.isapanah.firebase.Attribuites.FCM_Token;
 import static com.isapanah.firebase.Attribuites.VIP_USER;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(FCM, 0);
-        if(pref.contains(FCM_Token)){
-            Log.e("FirebaseToken","refID: "+pref.getString(FCM_Token, "null"));
-        }
+        Log.e("FirebaseToken","refID: "+FirebaseInstanceId.getInstance().getToken());
 
         RegisterBroadcastService();
 

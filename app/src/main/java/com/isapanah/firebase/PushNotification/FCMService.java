@@ -46,13 +46,13 @@ public class FCMService extends FirebaseMessagingService {
             return;
 
         if (remoteMessage.getNotification() != null) {
-            Log.e(TAG, "Notification message: " + remoteMessage.getNotification());
+            Log.i(TAG, "Notification message: " + remoteMessage.getNotification());
             showNotificationWithoutData(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
 
         if (remoteMessage.getData().size() > 0) {
-            Log.e(TAG, "Data Payload: " + remoteMessage.getData());
-            showNotificationWithData(remoteMessage.getData().get("body"));
+            Log.i(TAG, "Data Payload: " + remoteMessage.getData());
+            showNotificationWithData(remoteMessage.getData());
         }
 
     }
@@ -89,11 +89,12 @@ public class FCMService extends FirebaseMessagingService {
 
     }
 
-    private void showNotificationWithData(String body) {
+    private void showNotificationWithData(java.util.Map<java.lang.String,java.lang.String> body) {
 
         try{
 
             JSONObject bodyObjects = new JSONObject(body);
+
             if(bodyObjects.getString("type").equals("banner")){
                 showNotificationWithBanner(bodyObjects.getString("title"), bodyObjects.getString("message"), bodyObjects.getString("banner_url"));
             }else if(bodyObjects.getString("type").equals("dialog_message")){
