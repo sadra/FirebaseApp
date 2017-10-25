@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import static com.isapanah.firebase.Attribuites.FCM;
 import static com.isapanah.firebase.Attribuites.FCM_ACTION_NEW_NOTIFICATION;
+import static com.isapanah.firebase.Attribuites.FCM_TOPIC_GLOBAL;
 import static com.isapanah.firebase.Attribuites.FCM_TOPIC_ONSCREEN;
 import static com.isapanah.firebase.Attribuites.FCM_TOPIC_VIP_USER;
 import static com.isapanah.firebase.Attribuites.VIP_USER;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(FCM_ACTION_NEW_NOTIFICATION));
 
+        FirebaseMessaging.getInstance().subscribeToTopic(FCM_TOPIC_GLOBAL);
 
         FirebaseMessaging.getInstance().subscribeToTopic(FCM_TOPIC_ONSCREEN);
     }
