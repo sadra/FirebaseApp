@@ -40,25 +40,23 @@ public class FCMService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.e(TAG, "New notification from: " + remoteMessage.getFrom());
 
-        if (remoteMessage == null)
-            return;
+        Log.e(TAG, "New notification from: " + remoteMessage.getFrom());
 
         if (remoteMessage.getNotification() != null) {
             Log.i(TAG, "Notification message: " + remoteMessage.getNotification());
-            showNotificationWithoutData(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            notificationMessageReceived(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
 
         if (remoteMessage.getData().size() > 0) {
             Log.i(TAG, "Data Payload: " + remoteMessage.getData());
-            showNotificationWithData(remoteMessage.getData());
+            dataMessageReceived(remoteMessage.getData());
         }
 
     }
 
 
-    private void showNotificationWithoutData(String title, String body){
+    private void notificationMessageReceived(String title, String body){
 
         Intent intent = new Intent(this, MainActivity.class); //Open activity if clicked on notification
         PendingIntent pendingIntent;
@@ -89,7 +87,7 @@ public class FCMService extends FirebaseMessagingService {
 
     }
 
-    private void showNotificationWithData(java.util.Map<java.lang.String,java.lang.String> body) {
+    private void dataMessageReceived(java.util.Map<java.lang.String,java.lang.String> body) {
 
         try{
 
@@ -98,7 +96,7 @@ public class FCMService extends FirebaseMessagingService {
             if(bodyObjects.getString("type").equals("banner")){
                 showNotificationWithBanner(bodyObjects.getString("title"), bodyObjects.getString("message"), bodyObjects.getString("banner_url"));
             }else if(bodyObjects.getString("type").equals("dialog_message")){
-                broadcastTheNotification(bodyObjects.getString("title"), bodyObjects.getString("message"));
+                broadcastTheMessage(bodyObjects.getString("title"), bodyObjects.getString("message"));
             }
 
         }catch (Exception e){
@@ -148,7 +146,7 @@ public class FCMService extends FirebaseMessagingService {
 
     }
 
-    private void broadcastTheNotification(String title, String message){
+    private void broadcastTheMessage(String title, String message){
 
         Intent notification = new Intent(FCM_ACTION_NEW_NOTIFICATION);
         notification.putExtra("title", title);
